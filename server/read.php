@@ -117,7 +117,7 @@ if($subject == "get_products"){
 	    $outp .= '{"id":"'  . $rs["id"] . '",';
 	    $outp .= '"plaats":"'  . $rs["locatie_id"] . '",';
 	    $outp .= '"artikelcode":"'  . $rs["artikelcode"] . '",';
-	    $outp .= '"artikel_naam":"'  . $rs["artikel_naam"]  .  ' ' . $naam .  '",';
+	    $outp .= '"artikel_naam":"'  . $rs["artikel_naam"]',';
 	    $outp .= '"voorraad":"'  . $rs["voorraad"] . '",';
 	    $outp .= '"eenheid":"'  . $rs["eenheid"] . '"}';
 	    //$outp .= '"omschrijving":"'  . $omschrijving . '"}';

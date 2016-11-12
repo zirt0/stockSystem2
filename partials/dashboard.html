@@ -1,0 +1,172 @@
+<div class="row" style="margin-top:-20px">
+    
+    <div class="large-3 columns">
+        <div class="large-9 columns">
+            <label><strong>Zoeken</strong></label>
+            <input type="text" ng-model="query" placeholder="zoeken in alle velden">
+        </div>
+        <div class="large-3 columns" style='padding-left: 0px;'>
+            <label><strong>Show</strong></label>
+            <select ng-model="showfieldslimit" ng-options="x for x in showlimit"></select>
+            
+        </div>
+        <div class="large-6 columns">
+            <label><strong>Artikelcode</strong></label>
+            <input type="text" ng-model="zoekartikelcode" placeholder="zoeken in artikelcode">
+        </div>
+        <div class="large-6 columns">
+            <label><strong>Artikelnaam</strong></label>
+            <input type="text" ng-model="zoekartikelnaam" placeholder="zoeken in artikelnaam">
+        </div>
+        <div class="large-12 columns">
+            <button class='button tiny bg-green right' ng-click='productToevoegen.modalOpen = true'><i class='fontello-add '></i>Product Toevoegen</button>
+        </div>
+    </div>
+
+    <div class="large-9 columns">
+        <table class='large-12 stockall'>
+            <tr">
+                <th>Id</th>
+                 <th>Artikelcode</th>
+                <th>Locatie</th>
+               
+                <!-- <th>Artikelnummer</th> -->
+                <th>Omschrijving</th>
+                <!-- <th>Lange Tekst</th> -->
+                <th>voorraad</th>
+<!--                 <th>inkoopprijs_ex_btw</th>
+                <th>verkoopprijs_ex_btw</th>
+                <th>btw</th> -->
+                <th>eenheid</th>
+                <!-- <th>datum</th> -->
+            </tr>
+            <tr ng-repeat='x in products | filter: query | filter: {artikelcode: zoekartikelcode} | limitTo: showfieldslimit track by x.id' ng-click="bekijkProduct(x.id)" style='cursor: pointer'>
+                <td>{{x.id}} Bekijk</button></td>
+                <td>{{x.artikelcode}}</td>
+                <td>{{x.plaats}}</td>
+                
+                <!-- <td>{{x.artikelnummer}}</td> -->
+                <td>{{x.artikel_naam}}</td>
+                <!-- <td>{{x.omschrijving}}</td> -->
+                <td>{{x.voorraad}}</td>
+<!--                 <td>&euro; {{x.inkoopprijs_ex_btw}}</td>
+                <td>&euro; {{x.verkoopprijs_ex_btw}}</td>
+                <td>{{x.btw}}</td> -->
+                <td>{{x.eenheid}}</td>
+                <!-- <td>{{x.datum}}</td> -->
+            </tr>
+        </table>
+    
+        <div ng-if='products.details' id="firstModal" class='panel animate-if' style='position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: 1020px; z-index: 999999;'>
+
+            <a ng-click="products.details = ''" class="close-reveal-modal" style='font-size: 53px; color: black;font-weight: bold;position: absolute; right: 23px; top: 0px;'>&#215;</a>
+            <h2> Bekijk Product</h2>
+
+
+            <div class="large-12 columns">
+
+                <div class="large-4 columns">
+                    <label>Omschrijving</label>
+                    <input type="text" ng-model="products.details.artikel_naam">
+                </div>
+                <div class="large-4 columns">
+                    <label>artikelcode</label>
+                    <input type="text" ng-model="products.details.artikelcode">
+                </div>
+                <div class="large-4 columns">
+                    <label>eenheid</label>
+                    <input type="text" ng-model="products.details.eenheid">
+                </div>
+<!--                 <div class="large-4 columns">
+                    <label>inkoopprijs_ex_btw</label>
+                    <input type="text" ng-model="products.details.inkoopprijs_ex_btw">
+                </div>
+                <div class="large-4 columns">
+                    <label>verkoopprijs_ex_btw</label>
+                    <input type="text" ng-model="products.details.verkoopprijs_ex_btw">
+                </div> -->
+                <div class="large-4 columns">
+                    <label>Lange tekst</label>
+                    <input type="text" ng-model="products.details.omschrijving">
+                </div>
+                <div class="large-4 columns">
+                    <label>Locatie</label>
+                    <input type="text" ng-model="products.details.plaats">
+                </div>
+                <div class="large-4 columns">
+                    <label>voorraad</label>
+                    <input type="text" string-to-number ng-model="products.details.voorraad">
+                    <button ng-click='voorraadPlus()' class='bg-green tiny'>+</button>
+                    <button ng-click='voorraadMin()' class='bg-red tiny'>-</button>
+                </div>
+                <div class="large-12 columns">
+                    <button class='bg-red left tiny'>Verwijder</button>
+                    <button class='bg-green right' ng-click='productOpslaan(x.id)'>Opslaan</button>
+                </div>
+
+            </div>
+           
+        </div>
+
+        <div ng-if='productToevoegen.modalOpen' id="firstModal" class='panel animate-if' style='position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: 1020px; z-index: 999999;'>
+
+            <a ng-click="productToevoegen.modalOpen = false" class="close-reveal-modal" style='font-size: 53px; color: black;font-weight: bold;position: absolute; right: 23px; top: 0px;'>&#215;</a>
+            <h2>Product Toevoegen</h2>
+
+
+            <div class="large-12 columns">
+
+                <div class="large-6 columns">
+                    <label>artikelcode</label>
+                    <input type="text" ng-model="productToevoegen.artikelcode">
+                </div>
+                <div class="large-6 columns">
+                    <label>eenheid</label>
+                    <input type="text" ng-model="productToevoegen.eenheid">
+                </div>
+                <div class="large-12 columns">
+                    <label>Omschrijving</label>
+                    <input type="text" ng-model="productToevoegen.artikel_naam">
+                </div>
+                <div class="large-12 columns">
+                    <label>Lange tekst</label>
+<!--                     <input type="text" ng-model="productToevoegen.omschrijving">
+ -->                    <textarea ng-model='productToevoegen.omschrijving'></textarea>
+                </div>
+                
+                
+                <div class="large-4 columns">
+                    <label>voorraad</label>
+                    <input type="text" string-to-number ng-model="productToevoegen.voorraad">
+                </div>
+               <!--  <div class="large-12 columns">
+                    <div class="large-4">
+                        <label>inkoopprijs_ex_btw</label>
+                        <input type="text" ng-model="productToevoegen.inkoopprijs_ex_btw">
+                    </div>
+                </div>
+                <div class="large-12 columns">
+                    <div class="large-4">
+                        <label>verkoopprijs_ex_btw</label>
+                        <input type="text" ng-model="productToevoegen.verkoopprijs_ex_btw">
+                    </div>
+                </div> -->
+
+                <div class="large-4 columns right">
+                    <label>Locatie</label>
+                    <input type="text" ng-model="productToevoegen.plaats">
+                </div>
+                
+                <div class="large-12 columns">
+                    <button class='bg-red left tiny'>Verwijder</button>
+                    <button class='bg-green right' ng-click='productToevoegenfnc()'>Product Toevoegen</button>
+                </div>
+
+            </div>
+           
+        </div>
+
+
+    </div>
+        
+</div>

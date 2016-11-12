@@ -1,0 +1,83 @@
+<!-- <div ng-repeat="case in cases">{{case.case_name}} {{case.id}}</div> -->
+<div class="large-6 columns no-padding">
+  <input type="text" class="form-control" ng-model="query" placeholder="Zoeken">
+</div>
+<div class="large-6 columns no-padding">
+  <div class="large-6 columns">
+
+  </div>
+  <div class="large-6 columns">
+      <strong>Weergave: </strong>
+      <div class='clear'></div>
+      <form>
+      <input type="radio" ng-model="filterBy" value="" id='all'>
+      <label for='all'>All</label>
+
+      <input type="radio" ng-model="filterBy" value="0" name='inbehandeling' id='inbehandeling'>
+      <label for="inbehandeling">In Behandeling</label>
+      
+      <input type="radio" ng-model="filterBy" value="1" id="gesloten">
+      <label for="gesloten">Gesloten</label>
+      </form>
+  </div>
+</div>
+   <!-- <div class="large-2 columns ">
+      <a class="button bg-green small" href="#/customers/add/customer">Klant Aanmaken</a>
+   </div> -->
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Dossier</th>
+    <th>Dossiernummer</th>
+    <th>Client</th>
+    <th>Status</th>
+    <th>Aangemaakt</th>
+  </tr>
+  
+  <tr ng-repeat='x in people | filter: query' ng-show='x.status == filterBy || filterBy == ""'>
+    <td><i ng-if="x.confidential === '1'" class="fa fa-lock has-tip" aria-hidden="true" data-tooltip aria-haspopup="true" title="LET OP: VERTROUWELIJK DOSSIER"></i>
+        <a href="#/cases/{{x.case_id}}">{{x.casename}} </a></td>
+    <td><a href="#/customers/{{x.customer_id}}"> {{x.case_id_alias}}</a></td>
+    <td><a href="#/customers/{{x.customer_id}}">{{x.fname}} {{x.lname}} <span ng-if="x.company">- {{x.company}}</span></a></td>
+    <td><div class="tiny expand button bg-light-green" ng-if="x.status === '0'">In Behandeling</div>
+        <div class="tiny expand button bg-red" ng-if="x.status != '0'">Gesloten</div></td>
+    <td>{{x.create_date}}</td>
+    <td><a class="button tiny radius bg-green" href="#/cases/{{x.case_id}}">Bekijk</a></td>
+  </tr>
+
+</table>
+
+<!-- <table class="table table-striped table-bordered"
+  at-table at-paginate at-list="filteredList">
+  <thead></thead>
+  <tbody>
+    <tr>
+      <td at-title="Dossier">
+      	<i ng-if="filteredList[$index].confidential === '1'" class="fa fa-lock has-tip" aria-hidden="true" data-tooltip aria-haspopup="true" title="LET OP: VERTROUWELIJK DOSSIER"></i>
+        <a href="#/cases/{{filteredList[$index].case_id}}">{{filteredList[$index].casename}} </a> 
+
+      </td>
+      <td at-title="Dossiernummer">
+        <a href="#/customers/{{filteredList[$index].customer_id}}"> {{filteredList[$index].case_id_alias}}</a>  
+      </td>
+      <td at-title="Client">
+        <a href="#/customers/{{filteredList[$index].customer_id}}">{{filteredList[$index].fname}} {{filteredList[$index].lname}} <span ng-if="filteredList[$index].company">- {{filteredList[$index].company}}</span></a>
+
+
+      </td>
+      <td at-title="status">
+        <div class="tiny expand button bg-light-green" ng-if="filteredList[$index].status === '0'">In Behandeling</div>
+        <div class="tiny expand button bg-red" ng-if="filteredList[$index].status != '0'">Gesloten</div>
+
+      </td>
+      <td at-title="Aangemaakt">
+      	{{filteredList[$index].create_date}}
+      </td>
+      <td at-title="">
+      	<a class="button tiny radius bg-green" href="#/cases/{{filteredList[$index].case_id}}">Bekijk</a>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+<at-pagination at-list="filteredList" at-config="config"></at-pagination> -->

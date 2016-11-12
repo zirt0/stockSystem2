@@ -12,61 +12,10 @@ $args = $request->args;
 //print $subject;
 
 
-if($subject == "declaration_remove_type"){
+if($subject == "remove_product"){
 
-	$sql = "DELETE FROM declarations_type
-			WHERE id='" . $id . "';";
-
-				if ($conn->query($sql) === TRUE) {
-				    
-				    $result = "Removed";
-				    
-				} else {
-				    $result = "Error: " . $sql . "<br>" . $conn->error;
-				    //$result = "false";
-				}
-				$outp = $result;
-				//$outp = $sql;
-}
-
-if($subject == "declaration_remove"){
-
-	$sql = "DELETE FROM declarations
-			WHERE id='" . $id . "';";
-
-				if ($conn->query($sql) === TRUE) {
-				    
-				    $result = "Removed";
-				    
-				} else {
-				    $result = "Error: " . $sql . "<br>" . $conn->error;
-				    //$result = "false";
-				}
-				$outp = $result;
-				//$outp = $sql;
-}
-
-if($subject == "remove_user"){
-
-	$sql = "DELETE FROM users
-			WHERE id='" . $id . "';";
-
-				if ($conn->query($sql) === TRUE) {
-				    
-				    $result = "Removed";
-				    
-				} else {
-				    $result = "Error: " . $sql . "<br>" . $conn->error;
-				    //$result = "false";
-				}
-				$outp = $result;
-				//$outp = $sql;
-}
-
-if($subject == "remove_subscription"){
-
-	$sql = "DELETE FROM subscription
-			WHERE id='" . $id . "';";
+	$sql = "DELETE FROM products
+			WHERE id='" . $args->id . "';";
 
 				if ($conn->query($sql) === TRUE) {
 				    

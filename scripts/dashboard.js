@@ -49,6 +49,23 @@ app.controller('dashboardCtrl',function($scope, $rootScope, $http){
 			$scope.alleProducten();
 		});
     }
+
+        //productVerwijder
+    $scope.productVerwijder = function(id){
+    	console.log($scope.productToevoegen);
+    	$scope.productToevoegen.modalOpen = true;
+
+    	$http.post("server/remove.php",{'subject': "remove_product", "args": $scope.products.details})
+		.success(function (response) {
+			console.log(response);
+			$scope.alleProducten();
+			$scope.productToevoegen.modalOpen = false;
+			$rootScope.succesModalBox(true, "Product is succesvol verwijderd");
+			// $scope.customers = response.records;
+			// console.log($scope.customers);
+		});
+    }
+
     $scope.productToevoegen = {};
     $scope.productToevoegen.plaats = "";
     $scope.productToevoegen.artikelcode = "";

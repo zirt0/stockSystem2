@@ -100,7 +100,7 @@
                     <button ng-click='voorraadMin()' class='bg-red tiny'>-</button>
                 </div>
                 <div class="large-12 columns">
-                    <button class='bg-red left tiny'>Verwijder</button>
+                    <button class='bg-red left tiny' ng-click='productVerwijder(x.id)'>Verwijder</button>
                     <button class='bg-green right' ng-click='productOpslaan(x.id)'>Opslaan</button>
                 </div>
 
@@ -158,7 +158,6 @@
                 </div>
                 
                 <div class="large-12 columns">
-                    <button class='bg-red left tiny'>Verwijder</button>
                     <button class='bg-green right' ng-click='productToevoegenfnc()'>Product Toevoegen</button>
                 </div>
 

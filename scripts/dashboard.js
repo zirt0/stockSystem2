@@ -102,4 +102,42 @@ app.controller('dashboardCtrl',function($scope, $rootScope, $http){
 		});
     }
 
+    $scope.$watch('multiplesearch', function() {
+
+        if(!$scope.multiplesearch){
+        	return false;
+        }
+
+        $scope.multiplesearch = $scope.multiplesearch.replace(" ", "")
+        console.log('asd');
+
+        searchProduct($scope.multiplesearch);
+
+       	$scope.multisearcharray = []
+
+       	var splitKeyword = $scope.multiplesearch.split(';')
+       	angular.forEach(splitKeyword, function(value, key) {
+		  	console.log(value)
+
+		  	searchProduct(value);
+			
+		});
+    });
+
+    function searchProduct(search) { 
+    	
+    	angular.forEach($scope.products, function(value, key) {
+
+		 	if(search == value.artikelcode){
+		 		console.log(value)
+		 		$scope.multisearcharray.push(value);
+		 		console.log($scope.multisearcharray)
+
+		 	}
+
+			
+		});
+
+	}
+
 })

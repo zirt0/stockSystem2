@@ -18,9 +18,49 @@
             <label><strong>Artikelnaam</strong></label>
             <input type="text" ng-model="zoekartikelnaam" placeholder="zoeken in artikelnaam">
         </div>
+         <div class="large-12 columns">
+         <label><strong>Meerdere producten zoeken</strong></label>
+         <textarea ng-model='multiplesearch'></textarea>
+         {{multiplesearch}}
+         </div>
         <div class="large-12 columns">
             <button class='button tiny bg-green right' ng-click='productToevoegen.modalOpen = true'><i class='fontello-add '></i>Product Toevoegen</button>
         </div>
+    </div>
+
+    <div class="large-9 columns">
+        <table class='large-12 stockall'>
+            <tr">
+                <th>Id</th>
+                 <th>Artikelcode</th>
+                <th>Locatie</th>
+               
+                <!-- <th>Artikelnummer</th> -->
+                <th>Omschrijving</th>
+                <!-- <th>Lange Tekst</th> -->
+                <th>voorraad</th>
+<!--                 <th>inkoopprijs_ex_btw</th>
+                <th>verkoopprijs_ex_btw</th>
+                <th>btw</th> -->
+                <th>eenheid</th>
+                <!-- <th>datum</th> -->
+            </tr>
+            <tr ng-repeat='x in multisearcharray' style='cursor: pointer'>
+                <td>{{x.id}} Bekijk</button></td>
+                <td>{{x.artikelcode}}</td>
+                <td>{{x.plaats}}</td>
+                
+                <!-- <td>{{x.artikelnummer}}</td> -->
+                <td>{{x.artikel_naam}}</td>
+                <!-- <td>{{x.omschrijving}}</td> -->
+                <td>{{x.voorraad}}</td>
+<!--                 <td>&euro; {{x.inkoopprijs_ex_btw}}</td>
+                <td>&euro; {{x.verkoopprijs_ex_btw}}</td>
+                <td>{{x.btw}}</td> -->
+                <td>{{x.eenheid}}</td>
+                <!-- <td>{{x.datum}}</td> -->
+            </tr>
+        </table>
     </div>
 
     <div class="large-9 columns">
